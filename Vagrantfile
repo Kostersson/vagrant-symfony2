@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :private_network, ip: "192.168.80.80"
-  config.vm.hostname = "www.local"
+  config.vm.hostname = "miehisto.local"
 
   if not is_windows
     config.vm.synced_folder ".", "/vagrant", nfs: true
@@ -27,4 +27,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "vagrant/provision/compass.sh"
   config.vm.provision "shell", path: "vagrant/provision/samba.sh"
   config.vm.provision "shell", path: "vagrant/provision/composer.sh"
+  
+  config.vm.synced_folder "../slps-messi-legacy/", "/var/www/miehisto"
+  config.vm.synced_folder "../smps-messi-legacy/", "/var/www/messi"
+  
+  config.vm.network "forwarded_port", guest: 80, host: 80
 end
