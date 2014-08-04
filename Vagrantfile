@@ -31,5 +31,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "../slps-messi-legacy/", "/var/www/miehisto"
   config.vm.synced_folder "../smps-messi-legacy/", "/var/www/messi"
   
-  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1", host_protocol: 'tcp'
+  config.vm.network "forwarded_port", guest: 3306, host: 3306, host_ip: "127.0.0.1", host_protocol: 'tcp'
 end
